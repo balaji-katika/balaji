@@ -1,0 +1,46 @@
+package org.balaji.dao.impl;
+
+import java.util.List;
+
+import org.balaji.dao.CustomerDao;
+import org.balaji.db.transaction.MyDBTransaction;
+import org.balaji.db.transaction.MyTransaction;
+import org.balaji.hibernate.model.Customer;
+import org.balaji.hibernate.model.Product;
+import org.springframework.stereotype.Repository;
+
+/**
+ * DAO implementation for accessing through Hibernate
+ * 
+ * @author root
+ *
+ */
+@Repository("customerDao")
+public class CustomerDaoImpl extends BaseObjectDaoImpl<Customer> implements
+		CustomerDao {
+
+	public CustomerDaoImpl() {
+		super(Customer.class);
+	}
+
+	@Override
+	public Customer getCustomer(final Product product, final String instanceId) {
+		MyTransaction<Customer> myTransaction = new MyDBTransaction<Customer>(
+				getCurrentSession()) {
+
+			@Override
+			protected Customer doSomething() {
+				@SuppressWarnings("rawtypes")
+				List customers = session.createQuery(
+						"from Customer where instanceId = '" + instanceId
+								+ "' and product = " + product.getId()).list();
+				if (customers.size() == 0) {
+					return null;
+				}
+				return (Customer) customers.get(0);
+			}
+		};
+		return myTransaction.executeReadOnly();
+	}
+
+}
