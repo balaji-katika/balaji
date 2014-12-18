@@ -6,11 +6,11 @@ import org.hibernate.Transaction;
 
 /**
  * Facade for interacting with hibernate transactions
- * @author root
+ * @author Balaji Katika
  *
  */
-public abstract class MyDBTransaction<S> implements MyTransaction<S> {
-	private Logger logger = Logger.getLogger(MyDBTransaction.class);
+public abstract class DBTransactionFacadeImpl<S> implements DBTransactionFacade<S> {
+	private Logger logger = Logger.getLogger(DBTransactionFacadeImpl.class);
 	protected Session session;
 	private boolean isOpenedByMe = false;
 	private Transaction transaction = null;
@@ -21,7 +21,7 @@ public abstract class MyDBTransaction<S> implements MyTransaction<S> {
 	 * 
 	 * @param session
 	 */
-	public MyDBTransaction(Session session) {
+	public DBTransactionFacadeImpl(Session session) {
 		this.session = session;
 	}
 	

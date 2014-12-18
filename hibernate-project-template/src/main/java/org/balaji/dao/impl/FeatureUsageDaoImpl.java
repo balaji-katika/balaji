@@ -5,8 +5,8 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.balaji.dao.FeatureUsageDao;
-import org.balaji.db.transaction.MyDBTransaction;
-import org.balaji.db.transaction.MyTransaction;
+import org.balaji.db.transaction.DBTransactionFacadeImpl;
+import org.balaji.db.transaction.DBTransactionFacade;
 import org.balaji.hibernate.model.Customer;
 import org.balaji.hibernate.model.FeatureUsage;
 import org.springframework.stereotype.Repository;
@@ -32,7 +32,7 @@ public class FeatureUsageDaoImpl extends BaseObjectDaoImpl<FeatureUsage>
 	@Override
 	public Boolean updateMap(final Map<String, Integer> usage,
 			final Customer customer) {
-		MyTransaction<Boolean> transaction = new MyDBTransaction<Boolean>(
+		DBTransactionFacade<Boolean> transaction = new DBTransactionFacadeImpl<Boolean>(
 				getCurrentSession()) {
 
 			@Override

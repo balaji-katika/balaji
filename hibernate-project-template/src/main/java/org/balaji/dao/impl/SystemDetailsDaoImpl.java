@@ -5,8 +5,8 @@ import java.util.Properties;
 
 import org.apache.log4j.Logger;
 import org.balaji.dao.SystemDetailsDao;
-import org.balaji.db.transaction.MyDBTransaction;
-import org.balaji.db.transaction.MyTransaction;
+import org.balaji.db.transaction.DBTransactionFacadeImpl;
+import org.balaji.db.transaction.DBTransactionFacade;
 import org.balaji.hibernate.model.Customer;
 import org.balaji.hibernate.model.SystemDetails;
 import org.springframework.stereotype.Repository;
@@ -32,7 +32,7 @@ public class SystemDetailsDaoImpl extends BaseObjectDaoImpl<SystemDetails>
 	@Override
 	public void updateSystemDetails(final Customer customer,
 			final Properties properties) {
-		MyTransaction<Void> transaction = new MyDBTransaction<Void>(
+		DBTransactionFacade<Void> transaction = new DBTransactionFacadeImpl<Void>(
 				getCurrentSession()) {
 
 			@Override
@@ -71,7 +71,7 @@ public class SystemDetailsDaoImpl extends BaseObjectDaoImpl<SystemDetails>
 
 	@Override
 	public SystemDetails findByCustKey(final Customer customer, final String k1) {
-		MyTransaction<SystemDetails> transaction = new MyDBTransaction<SystemDetails>(
+		DBTransactionFacade<SystemDetails> transaction = new DBTransactionFacadeImpl<SystemDetails>(
 				getCurrentSession()) {
 
 			@Override

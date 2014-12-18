@@ -1,12 +1,12 @@
 package org.balaji.db.transaction;
 
 /**
- * Interface for DB transaction through ORM
- * @author root
+ * Facade for DB transaction through ORM
+ * @author Balaji Katika
  *
  * @param <S>
  */
-public interface MyTransaction <S> {
+public interface DBTransactionFacade <S> {
 	/**
 	 * Execute a read only transaction
 	 */

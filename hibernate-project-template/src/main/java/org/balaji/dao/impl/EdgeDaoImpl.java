@@ -5,8 +5,8 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.balaji.dao.EdgeDao;
-import org.balaji.db.transaction.MyDBTransaction;
-import org.balaji.db.transaction.MyTransaction;
+import org.balaji.db.transaction.DBTransactionFacadeImpl;
+import org.balaji.db.transaction.DBTransactionFacade;
 import org.balaji.hibernate.model.Edge;
 import org.balaji.hibernate.model.Node;
 import org.springframework.stereotype.Repository;
@@ -32,7 +32,7 @@ public class EdgeDaoImpl extends BaseObjectDaoImpl<Edge> implements EdgeDao {
 	public boolean updateTopology(final Map<Integer, Node> nodeMap,
 			final List<int[]> edges) {
 
-		MyTransaction<Boolean> myTransaction = new MyDBTransaction<Boolean>(
+		DBTransactionFacade<Boolean> myTransaction = new DBTransactionFacadeImpl<Boolean>(
 				getCurrentSession()) {
 
 			@Override
@@ -66,7 +66,7 @@ public class EdgeDaoImpl extends BaseObjectDaoImpl<Edge> implements EdgeDao {
 	}
 
 	public Edge findEdgeByNodes(final Node from, final Node to) {
-		MyTransaction<Edge> transaction = new MyDBTransaction<Edge>(
+		DBTransactionFacade<Edge> transaction = new DBTransactionFacadeImpl<Edge>(
 				getCurrentSession()) {
 
 			@Override

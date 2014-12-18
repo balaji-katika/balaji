@@ -3,8 +3,8 @@ package org.balaji.dao.impl;
 import java.util.List;
 
 import org.balaji.dao.ProductDao;
-import org.balaji.db.transaction.MyDBTransaction;
-import org.balaji.db.transaction.MyTransaction;
+import org.balaji.db.transaction.DBTransactionFacadeImpl;
+import org.balaji.db.transaction.DBTransactionFacade;
 import org.balaji.hibernate.model.Product;
 import org.springframework.stereotype.Repository;
 
@@ -20,7 +20,7 @@ public class ProductDaoImpl extends BaseObjectDaoImpl<Product> implements
 
 	@Override
 	public Product getByCollectorId(final String collector_id) {
-		MyTransaction<Product> myTransaction = new MyDBTransaction<Product>(
+		DBTransactionFacade<Product> myTransaction = new DBTransactionFacadeImpl<Product>(
 				getCurrentSession()) {
 
 			@Override

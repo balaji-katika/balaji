@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.balaji.dao.BaseObjectDao;
 import org.balaji.db.transaction.CustomHibernateDaoSupport;
-import org.balaji.db.transaction.MyDBTransaction;
-import org.balaji.db.transaction.MyTransaction;
+import org.balaji.db.transaction.DBTransactionFacadeImpl;
+import org.balaji.db.transaction.DBTransactionFacade;
 import org.balaji.hibernate.model.BaseObject;
 
 //@Repository("baseObjectDao")
@@ -29,7 +29,7 @@ public abstract class BaseObjectDaoImpl<S extends BaseObject> extends
 
 	@Override
 	public void save(final S obj) {
-		MyTransaction<Void> transaction = new MyDBTransaction<Void>(
+		DBTransactionFacade<Void> transaction = new DBTransactionFacadeImpl<Void>(
 				getCurrentSession()) {
 			@Override
 			protected Void doSomething() {
@@ -42,7 +42,7 @@ public abstract class BaseObjectDaoImpl<S extends BaseObject> extends
 
 	@Override
 	public void update(final S obj) {
-		MyTransaction<Void> transaction = new MyDBTransaction<Void>(
+		DBTransactionFacade<Void> transaction = new DBTransactionFacadeImpl<Void>(
 				getCurrentSession()) {
 			@Override
 			protected Void doSomething() {
@@ -55,7 +55,7 @@ public abstract class BaseObjectDaoImpl<S extends BaseObject> extends
 
 	@Override
 	public void delete(final S obj) {
-		MyTransaction<Void> transaction = new MyDBTransaction<Void>(
+		DBTransactionFacade<Void> transaction = new DBTransactionFacadeImpl<Void>(
 				getCurrentSession()) {
 			@Override
 			protected Void doSomething() {
@@ -69,7 +69,7 @@ public abstract class BaseObjectDaoImpl<S extends BaseObject> extends
 
 	@Override
 	public S findById(final int id) {
-		MyTransaction<S> transaction = new MyDBTransaction<S>(
+		DBTransactionFacade<S> transaction = new DBTransactionFacadeImpl<S>(
 				getCurrentSession()) {
 			@SuppressWarnings({ "unchecked", "rawtypes" })
 			@Override
@@ -90,7 +90,7 @@ public abstract class BaseObjectDaoImpl<S extends BaseObject> extends
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public List<S> findAll() {
-		MyTransaction<List> transaction = new MyDBTransaction<List>(
+		DBTransactionFacade<List> transaction = new DBTransactionFacadeImpl<List>(
 				getCurrentSession()) {
 			@Override
 			protected List doSomething() {
@@ -118,7 +118,7 @@ public abstract class BaseObjectDaoImpl<S extends BaseObject> extends
 	 * @return
 	 */
 	public S findEntityByQuery(final String query) {
-		MyTransaction<S> myTransaction = new MyDBTransaction<S>(
+		DBTransactionFacade<S> myTransaction = new DBTransactionFacadeImpl<S>(
 				getCurrentSession()) {
 
 			@SuppressWarnings("unchecked")

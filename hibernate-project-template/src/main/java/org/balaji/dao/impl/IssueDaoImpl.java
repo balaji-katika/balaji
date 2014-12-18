@@ -5,8 +5,8 @@ import java.util.Properties;
 
 import org.apache.log4j.Logger;
 import org.balaji.dao.IssueDao;
-import org.balaji.db.transaction.MyDBTransaction;
-import org.balaji.db.transaction.MyTransaction;
+import org.balaji.db.transaction.DBTransactionFacadeImpl;
+import org.balaji.db.transaction.DBTransactionFacade;
 import org.balaji.hibernate.model.Customer;
 import org.balaji.hibernate.model.Issue;
 import org.balaji.hibernate.model.SystemDetails;
@@ -32,7 +32,7 @@ public class IssueDaoImpl extends BaseObjectDaoImpl<Issue> implements IssueDao {
 	@Override
 	public void updateIssues(final Customer customer,
 			final Properties properties) {
-		MyTransaction<Void> transaction = new MyDBTransaction<Void>(
+		DBTransactionFacade<Void> transaction = new DBTransactionFacadeImpl<Void>(
 				getCurrentSession()) {
 
 			@Override
@@ -73,7 +73,7 @@ public class IssueDaoImpl extends BaseObjectDaoImpl<Issue> implements IssueDao {
 
 	@Override
 	public Issue findByCustKey(final Customer customer, final String name) {
-		MyTransaction<Issue> transaction = new MyDBTransaction<Issue>(
+		DBTransactionFacade<Issue> transaction = new DBTransactionFacadeImpl<Issue>(
 				getCurrentSession()) {
 
 			@Override
