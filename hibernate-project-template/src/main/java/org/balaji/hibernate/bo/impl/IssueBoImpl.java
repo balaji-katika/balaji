@@ -1,10 +1,10 @@
-package org.balaji.bo.impl;
+package org.balaji.hibernate.bo.impl;
 
 import java.util.Properties;
 
-import org.balaji.dao.BaseObjectDao;
-import org.balaji.dao.IssueDao;
 import org.balaji.hibernate.bo.IssueBo;
+import org.balaji.hibernate.dao.BaseObjectDao;
+import org.balaji.hibernate.dao.IssueDao;
 import org.balaji.hibernate.model.Customer;
 import org.balaji.hibernate.model.Issue;
 import org.springframework.beans.factory.annotation.Autowired;

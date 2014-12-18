@@ -1,9 +1,9 @@
-package org.balaji.bo.impl;
+package org.balaji.hibernate.bo.impl;
 
 import java.util.List;
 
-import org.balaji.dao.BaseObjectDao;
 import org.balaji.hibernate.bo.BaseObjectBo;
+import org.balaji.hibernate.dao.BaseObjectDao;
 import org.balaji.hibernate.model.BaseObject;
 import org.springframework.stereotype.Service;
 

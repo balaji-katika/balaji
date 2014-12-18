@@ -1,12 +1,12 @@
-package org.balaji.dao.impl;
+package org.balaji.hibernate.dao.impl;
 
 import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.balaji.dao.FeatureUsageDao;
 import org.balaji.db.transaction.DBTransactionFacadeImpl;
 import org.balaji.db.transaction.DBTransactionFacade;
+import org.balaji.hibernate.dao.FeatureUsageDao;
 import org.balaji.hibernate.model.Customer;
 import org.balaji.hibernate.model.FeatureUsage;
 import org.springframework.stereotype.Repository;

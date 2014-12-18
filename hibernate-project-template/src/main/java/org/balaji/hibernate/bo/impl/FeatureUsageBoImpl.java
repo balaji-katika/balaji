@@ -1,10 +1,10 @@
-package org.balaji.bo.impl;
+package org.balaji.hibernate.bo.impl;
 
 import java.util.Map;
 
-import org.balaji.dao.BaseObjectDao;
-import org.balaji.dao.FeatureUsageDao;
 import org.balaji.hibernate.bo.FeatureUsageBo;
+import org.balaji.hibernate.dao.BaseObjectDao;
+import org.balaji.hibernate.dao.FeatureUsageDao;
 import org.balaji.hibernate.model.Customer;
 import org.balaji.hibernate.model.FeatureUsage;
 import org.springframework.beans.factory.annotation.Autowired;

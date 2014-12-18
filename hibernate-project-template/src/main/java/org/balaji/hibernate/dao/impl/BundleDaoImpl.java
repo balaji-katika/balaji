@@ -1,6 +1,6 @@
-package org.balaji.dao.impl;
+package org.balaji.hibernate.dao.impl;
 
-import org.balaji.dao.BundleDao;
+import org.balaji.hibernate.dao.BundleDao;
 import org.balaji.hibernate.model.Bundle;
 import org.springframework.stereotype.Repository;
 

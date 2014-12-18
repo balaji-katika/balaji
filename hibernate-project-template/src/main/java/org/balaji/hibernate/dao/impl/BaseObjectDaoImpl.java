@@ -1,16 +1,28 @@
-package org.balaji.dao.impl;
+package org.balaji.hibernate.dao.impl;
 
 import java.util.List;
 
-import org.balaji.dao.BaseObjectDao;
-import org.balaji.db.transaction.CustomHibernateDaoSupport;
 import org.balaji.db.transaction.DBTransactionFacadeImpl;
 import org.balaji.db.transaction.DBTransactionFacade;
+import org.balaji.hibernate.dao.BaseObjectDao;
 import org.balaji.hibernate.model.BaseObject;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
-//@Repository("baseObjectDao")
-public abstract class BaseObjectDaoImpl<S extends BaseObject> extends
-		CustomHibernateDaoSupport implements BaseObjectDao<S> {
+/**
+ * 
+ * @author Balaji Katika
+ *
+ * Abstract Implementation for the {@link BaseObjectDAO}
+ */
+public abstract class BaseObjectDaoImpl<S extends BaseObject> implements BaseObjectDao<S> {
+    @Autowired
+    protected SessionFactory sessionFactory;
+    
+    protected Session getCurrentSession() {
+        return sessionFactory.getCurrentSession();
+    }
 
 	private Class<? extends BaseObject> class1;
 
@@ -135,6 +147,5 @@ public abstract class BaseObjectDaoImpl<S extends BaseObject> extends
 		};
 
 		return myTransaction.executeReadOnly();
-
 	}
 }

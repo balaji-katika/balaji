@@ -1,11 +1,11 @@
-package org.balaji.bo.impl;
+package org.balaji.hibernate.bo.impl;
 
 import java.util.List;
 import java.util.Map;
 
-import org.balaji.dao.BaseObjectDao;
-import org.balaji.dao.EdgeDao;
 import org.balaji.hibernate.bo.EdgeBo;
+import org.balaji.hibernate.dao.BaseObjectDao;
+import org.balaji.hibernate.dao.EdgeDao;
 import org.balaji.hibernate.model.Edge;
 import org.balaji.hibernate.model.Node;
 import org.springframework.beans.factory.annotation.Autowired;

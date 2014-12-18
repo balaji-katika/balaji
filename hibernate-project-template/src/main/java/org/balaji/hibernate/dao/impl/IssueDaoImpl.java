@@ -1,12 +1,12 @@
-package org.balaji.dao.impl;
+package org.balaji.hibernate.dao.impl;
 
 import java.util.List;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
-import org.balaji.dao.IssueDao;
 import org.balaji.db.transaction.DBTransactionFacadeImpl;
 import org.balaji.db.transaction.DBTransactionFacade;
+import org.balaji.hibernate.dao.IssueDao;
 import org.balaji.hibernate.model.Customer;
 import org.balaji.hibernate.model.Issue;
 import org.balaji.hibernate.model.SystemDetails;

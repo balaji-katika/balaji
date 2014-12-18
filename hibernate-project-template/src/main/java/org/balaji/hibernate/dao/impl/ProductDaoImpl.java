@@ -1,10 +1,10 @@
-package org.balaji.dao.impl;
+package org.balaji.hibernate.dao.impl;
 
 import java.util.List;
 
-import org.balaji.dao.ProductDao;
 import org.balaji.db.transaction.DBTransactionFacadeImpl;
 import org.balaji.db.transaction.DBTransactionFacade;
+import org.balaji.hibernate.dao.ProductDao;
 import org.balaji.hibernate.model.Product;
 import org.springframework.stereotype.Repository;
 

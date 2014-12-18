@@ -1,4 +1,4 @@
-package org.balaji.dao;
+package org.balaji.hibernate.dao;
 
 import java.util.Map;
 

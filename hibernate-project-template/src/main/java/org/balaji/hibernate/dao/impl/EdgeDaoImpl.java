@@ -1,12 +1,12 @@
-package org.balaji.dao.impl;
+package org.balaji.hibernate.dao.impl;
 
 import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.balaji.dao.EdgeDao;
 import org.balaji.db.transaction.DBTransactionFacadeImpl;
 import org.balaji.db.transaction.DBTransactionFacade;
+import org.balaji.hibernate.dao.EdgeDao;
 import org.balaji.hibernate.model.Edge;
 import org.balaji.hibernate.model.Node;
 import org.springframework.stereotype.Repository;
