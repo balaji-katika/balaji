@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+</h:head>
+<h:body>
+	<h2>Primeface WaterMark example</h2>	
+	<h:outputText id="idOutput" rendered="#{not empty mySessionBean.name}"
+		value="Welcome #{mySessionBean.name}"/>
+	<h:form>
+		<h:outputLabel id="idNameLbl" for="idName" value="Update your Name:" />
+		<p:inputText id="idName" value="#{mySessionBean.name}"/>
+		<p:watermark for="idName" value="Enter new name"/>
+		<h:commandButton value="Submit" action="#{mySessionBean.welcome}" />
+	</h:form>
+</h:body>
+</html>

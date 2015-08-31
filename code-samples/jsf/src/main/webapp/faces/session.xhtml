@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:h="http://java.sun.com/jsf/html">	
+    <h:head>
+        
+    </h:head>
+    <h:body>
+    	<h2>JSF 2.0 Hello World Example</h2>
+    	<h:outputText id="idOutput" rendered="#{not empty mySessionBean.name}" value="#{mySessionBean.name}">Welcome</h:outputText>
+    	<h:form>
+    		<h:outputLabel id="idNameLbl" for="idName" value="Update your Name:"/>
+    	   <h:inputText id="idName" value="#{mySessionBean.name}"></h:inputText>
+    	   <h:commandButton value="Submit" action="#{mySessionBean.welcome}"/>
+    	</h:form>
+    </h:body>
+</html>
