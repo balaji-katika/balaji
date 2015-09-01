@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="http://java.sun.com/jsf/core"      
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
-	
-    <h:head>
-        
-    </h:head>
-    <h:body>
-    	<h2>Hello World Example</h2>
-    	<p:separator />
-    	<h:form>
-    	<h:outputLabel for="idName">Enter Your Name: </h:outputLabel>
-    	   <h:inputText id="idName" value="#{myRequestScopeBean.name}"></h:inputText><br/>
-    	   <h:commandButton value="Submit" action="welcome"></h:commandButton>
-    	</h:form>
-    </h:body>
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+<h:body>
+	<h2>Hello World Example</h2>
+	<p:separator />
+	<h:form>
+		<h:outputLabel for="idName">Enter Your Name: </h:outputLabel>
+		<h:inputText id="idName" value="#{myRequestScopeBean.name}"></h:inputText>
+		<br />
+		<h:commandButton value="Submit" action="welcome"></h:commandButton>
+	</h:form>
+</h:body>
 </html>

@@ -8,15 +8,30 @@
 
 </h:head>
 <h:body>
-	<h2>View Example</h2>	
+	<h2>View Scope Example</h2>
 	<p:separator />
-	<h:outputText id="idOutput" rendered="#{not empty mySessionBean.name}"
-		value="Welcome #{mySessionBean.name}"/>
-	<h:form>
-		<h:outputLabel id="idNameLbl" for="idName" value="Enter the year:" />
-		<p:inputText id="idName" value="#{mySessionBean.name}"/>
-		<p:watermark for="idName" value="Enter new name"/>
-		<h:commandButton value="Submit" action="#{mySessionBean.welcome}" />
+
+	<h:form id="form">
+		<p:panel id="idPanel" header="Enter the details">
+			<h:panelGrid styleClass="Container90" columns="2" cellpadding="5">
+				<p:outputLabel id="idLblBoyCnt" for="idIpBoyCnt" value="Boys" />
+				<p:inputText id="idIpBoyCnt" value="#{myViewScopedManagedBean.boys}" />
+				<p:outputLabel id="idLblGirlCnt" for="idIpGirlCnt" value="Girls" />
+				<p:inputText id="idIpGirlCnt"
+					value="#{myViewScopedManagedBean.girls}" />
+				<p:outputLabel id="idLblYr" for="idIpYear" value="Year" />
+				<p:inputText id="idIpYear" value="#{myViewScopedManagedBean.year}" />
+				<p:outputLabel id="lblSwitch" value="Primeface Switch"/>
+				<p:inputSwitch id="ipSwitch" value="True"/>
+			</h:panelGrid>
+		</p:panel>
+		<p:commandButton value="Add" update="idchart"
+			action="#{myViewScopedManagedBean.save}" validateClient="true" />
+
+		<p:chart id="idchart" type="line"
+			model="#{myViewScopedManagedBean.model}" />
 	</h:form>
+
+
 </h:body>
 </html>

@@ -8,14 +8,14 @@
 
 </h:head>
 <h:body>
-	<h2>Primeface WaterMark example</h2>	
+	<h2>Primeface Session example</h2>
 	<p:separator />
 	<h:outputText id="idOutput" rendered="#{not empty mySessionBean.name}"
-		value="Welcome #{mySessionBean.name}"/>
+		value="Welcome #{mySessionBean.name}" />
 	<h:form>
 		<h:outputLabel id="idNameLbl" for="idName" value="Update your Name:" />
-		<p:inputText id="idName" value="#{mySessionBean.name}"/>
-		<p:watermark for="idName" value="Enter new name"/>
+		<p:inputText id="idName" value="#{mySessionBean.name}" />
+		<p:watermark for="idName" value="Enter new name" />
 		<h:commandButton value="Submit" action="#{mySessionBean.welcome}" />
 	</h:form>
 </h:body>
