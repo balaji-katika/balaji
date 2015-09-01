@@ -11,6 +11,10 @@
     <h:body>
     	<h2>Hello World Example</h2>
     	<p:separator />
-    	<h:outputText id="idOutName" value="Welcome #{myRequestScopeBean.name}"/>
+    	<h:form>
+    	<h:outputLabel for="idName">Enter Your Name: </h:outputLabel>
+    	   <h:inputText id="idName" value="#{myRequestScopeBean.name}"></h:inputText><br/>
+    	   <h:commandButton value="Submit" action="welcome"></h:commandButton>
+    	</h:form>
     </h:body>
 </html>
