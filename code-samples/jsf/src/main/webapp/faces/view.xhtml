@@ -5,7 +5,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-
+	<link type="text/css" rel="stylesheet"
+		href="#{request.contextPath}/primefaces-cupertino/theme.css" />
 </h:head>
 <h:body>
 	<h2>View Scope Example</h2>
@@ -13,7 +14,8 @@
 
 	<h:form id="form">
 		<p:panel id="idPanel" header="Enter the details">
-			<h:panelGrid styleClass="Container90" columns="2" cellpadding="5">
+			<h:panelGrid styleClass="Container90" columnClasses="Wid20, Wid80"
+				columns="2" cellpadding="5">
 				<p:outputLabel id="idLblBoyCnt" for="idIpBoyCnt" value="Boys" />
 				<p:inputText id="idIpBoyCnt" value="#{myViewScopedManagedBean.boys}" />
 				<p:outputLabel id="idLblGirlCnt" for="idIpGirlCnt" value="Girls" />
@@ -21,15 +23,15 @@
 					value="#{myViewScopedManagedBean.girls}" />
 				<p:outputLabel id="idLblYr" for="idIpYear" value="Year" />
 				<p:inputText id="idIpYear" value="#{myViewScopedManagedBean.year}" />
-				<p:outputLabel id="lblSwitch" value="Primeface Switch"/>
-				<p:inputSwitch id="ipSwitch" value="True"/>
+				<p:outputLabel id="lblSwitch" value="Primeface Switch" />
+				<p:inputSwitch id="ipSwitch" value="True" />
 			</h:panelGrid>
 		</p:panel>
 		<p:commandButton value="Add" update="idchart"
 			action="#{myViewScopedManagedBean.save}" validateClient="true" />
 
 		<p:chart id="idchart" type="line"
-			model="#{myViewScopedManagedBean.model}" />
+			model="#{myViewScopedManagedBean.model}" styleClass="Container90" />
 	</h:form>
 
 

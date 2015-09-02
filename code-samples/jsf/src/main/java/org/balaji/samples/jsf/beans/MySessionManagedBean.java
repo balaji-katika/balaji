@@ -24,7 +24,7 @@ public class MySessionManagedBean {
 	}
 	
 	public void welcome() {
-		
+		System.out.println("I came here");
 	}
 	
 }
