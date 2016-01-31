@@ -9,6 +9,10 @@ import java.util.Date;
  */
 public class DateUtils {
     private final static String DISPLAY_FORMAT = "hh-mm a";
+    private final static String WEST = "West";
+    private final static String EAST = "East";
+    private final static String NORTH = "North";
+    private final static String SOUTH = "South";
     /**
      * Get the day of the week
      * @param date - {@link Date} for which the day to be calculated
@@ -39,5 +43,33 @@ public class DateUtils {
         sb.append(" - ");
         sb.append(sdf.format(end));
         return sb.toString();
+    }
+
+    /**
+     * Get the direction of the Shoolam for the given day
+     * @param date - {@link Date} input
+     * @return - Direction
+     */
+    public static String getShoolamDirection(Date date) {
+        int dayOfWeek = getDayOfWeek(date);
+        switch (dayOfWeek) {
+            case 1:
+                return WEST;
+            case 2:
+                return EAST;
+            case 3:
+                return NORTH;
+            case 4:
+                return NORTH;
+            case 5:
+                return SOUTH;
+            case 6:
+                return WEST;
+            case 7:
+                return EAST;
+            default:
+                //Assume Sunday
+                return WEST;
+        }
     }
 }

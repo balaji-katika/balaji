@@ -10,6 +10,7 @@ import com.tr.muhurath.app.muhurat.kaal.GuliKaal;
 import com.tr.muhurath.app.muhurat.kaal.Kaal;
 import com.tr.muhurath.app.muhurat.kaal.RahuKaal;
 import com.tr.muhurath.app.muhurat.kaal.YamaGandaKaal;
+import com.tr.muhurath.app.muhurat.utils.DateUtils;
 import com.tr.muhurath.app.muhurat.utils.SunRiseSetUtil;
 
 import java.text.ParseException;
@@ -18,6 +19,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class MuhuratSummaryActivity extends AppCompatActivity {
+    public static final String LBL_DATE_DISPLAY = "E dd-MMM-yyyy";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +46,7 @@ public class MuhuratSummaryActivity extends AppCompatActivity {
         Date sunSet=SunRiseSetUtil.getSunSet(selectedDate);
 
         //Generate label with the selected date
-        SimpleDateFormat displayDateFormat = new SimpleDateFormat("E yyyy.dd.MM");
+        SimpleDateFormat displayDateFormat = new SimpleDateFormat(LBL_DATE_DISPLAY);
         TextView dateHolder = (TextView) findViewById(R.id.txtMuhuratDateHolder);
         dateHolder.setText("Muhurat for " + displayDateFormat.format(selectedDate));
 
@@ -66,6 +68,8 @@ public class MuhuratSummaryActivity extends AppCompatActivity {
         kalHolder = (TextView) findViewById(R.id.txtMuhuratYama);
         kalHolder.setText("YamaGandam : " + kaal.getMuhuratForDisplay(sunRise, sunSet));
 
+        kalHolder = (TextView) findViewById(R.id.txtMuhuraShoolam);
+        kalHolder.setText("Shoolam : " + DateUtils.getShoolamDirection(selectedDate));
         //Set back button on Tool bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
