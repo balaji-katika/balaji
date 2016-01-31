@@ -81,6 +81,18 @@ public class MuhuratSummaryActivity extends AppCompatActivity {
 
         kalHolder = (TextView) findViewById(R.id.txtMuhuraShoolam);
         kalHolder.setText("Shoolam : " + DateUtils.getShoolamDirection(selectedDate));
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(selectedDate);
+
+        //Display Sun Rise
+        kalHolder = (TextView) findViewById(R.id.txtMuhuraSunRise);
+        kalHolder.setText("Sun Rise : " + calculator.getOfficialSunriseForDate(calendar));
+
+        //Display Sun Set
+        kalHolder = (TextView) findViewById(R.id.txtMuhuraSunSet);
+        kalHolder.setText("Sun Set : " + calculator.getOfficialSunsetForDate(calendar));
+
         //Set back button on Tool bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
