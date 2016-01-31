@@ -110,10 +110,28 @@
         android:text="SunSet"
         android:textSize="@dimen/lbl_size"
         />
-
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_margin="15dp"
+        android:background="@android:color/darker_gray"/>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Shares with friends"
-        android:id="@+id/shareButton" />
+        android:text="Shares via Others.."
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:id="@+id/shareButton"
+        android:background="@color/colorShareButton"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Share via WhatsApp.."
+        android:id="@+id/shareWhatAppButton"
+        android:background="@color/colorShareButton"/>
+</LinearLayout>
 </LinearLayout>

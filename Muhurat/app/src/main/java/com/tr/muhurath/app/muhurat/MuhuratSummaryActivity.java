@@ -41,6 +41,8 @@ public class MuhuratSummaryActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        initShareBtnListener();
+        initWhatsAppShareBtnListener();
         //Parse the date passed to the activity
         Intent intent = getIntent();
         String inputDate = intent.getStringExtra(IntentConstants.DATE_DDMMYYYY);
@@ -65,8 +67,10 @@ public class MuhuratSummaryActivity extends AppCompatActivity {
         //Generate label with the selected date
         SimpleDateFormat displayDateFormat = new SimpleDateFormat(LBL_DATE_DISPLAY);
         TextView dateHolder = (TextView) findViewById(R.id.txtMuhuratDateHolder);
-        dateHolder.setText("Muhurat for " + displayDateFormat.format(selectedDate));
-        summaryText.append("Muhurat for " + displayDateFormat.format(selectedDate));
+        String msg = null;
+        msg = "Muhurat for " + displayDateFormat.format(selectedDate);
+        dateHolder.setText(msg);
+        summaryText.append(msg + "<br>");
 
         Kaal kaal = null;
         TextView kalHolder = null;
@@ -74,51 +78,73 @@ public class MuhuratSummaryActivity extends AppCompatActivity {
         //Display Guli Kaal
         kaal = new GuliKaal();
         kalHolder = (TextView) findViewById(R.id.txtMuhuratGuli);
-        kalHolder.setText("Gulika : " + kaal.getMuhuratForDisplay(sunRise, sunSet));
-        summaryText.append("Gulika : " + kaal.getMuhuratForDisplay(sunRise, sunSet));
+        msg = "Gulika : " + kaal.getMuhuratForDisplay(sunRise, sunSet);
+        kalHolder.setText(msg);
+        summaryText.append(msg + "<br>");
 
         //Display Rahu Kaal
         kaal = new RahuKaal();
         kalHolder = (TextView) findViewById(R.id.txtMuhuratRahu);
-        kalHolder.setText("Rahu Kaalam : " + kaal.getMuhuratForDisplay(sunRise, sunSet));
-        summaryText.append("Rahu Kaalam : " + kaal.getMuhuratForDisplay(sunRise, sunSet));
+        msg = "Rahu Kaalam : " + kaal.getMuhuratForDisplay(sunRise, sunSet);
+        kalHolder.setText(msg);
+        summaryText.append(msg + "<br>");
 
         //Display Yama Kaal
         kaal = new YamaGandaKaal();
         kalHolder = (TextView) findViewById(R.id.txtMuhuratYama);
-        kalHolder.setText("YamaGandam : " + kaal.getMuhuratForDisplay(sunRise, sunSet));
-        summaryText.append("YamaGandam : " + kaal.getMuhuratForDisplay(sunRise, sunSet));
+        msg = "Yama Gandam : " + kaal.getMuhuratForDisplay(sunRise, sunSet);
+        kalHolder.setText(msg);
+        summaryText.append(msg + "<br>");
 
         kalHolder = (TextView) findViewById(R.id.txtMuhuraShoolam);
-        kalHolder.setText("Shoolam : " + DateUtils.getShoolamDirection(selectedDate));
-        summaryText.append("Shoolam : " + DateUtils.getShoolamDirection(selectedDate));
+        msg = "Shoolam : " + DateUtils.getShoolamDirection(selectedDate);
+        kalHolder.setText(msg);
+        summaryText.append(msg + "<br>");
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(selectedDate);
 
         //Display Sun Rise
         kalHolder = (TextView) findViewById(R.id.txtMuhuraSunRise);
-        kalHolder.setText("Sun Rise : " + calculator.getOfficialSunriseForDate(calendar));
-        summaryText.append("Sun Rise : " + calculator.getOfficialSunriseForDate(calendar));
+        msg = "Sun Rise : " + calculator.getOfficialSunriseForDate(calendar);
+        kalHolder.setText(msg);
+        summaryText.append(msg + "<br>");
 
         //Display Sun Set
         kalHolder = (TextView) findViewById(R.id.txtMuhuraSunSet);
-        kalHolder.setText("Sun Set : " + calculator.getOfficialSunsetForDate(calendar));
-        summaryText.append("Sun Set : " + calculator.getOfficialSunsetForDate(calendar));
+        msg = "Sun Set : " + calculator.getOfficialSunsetForDate(calendar);
+        kalHolder.setText(msg);
+        summaryText.append(msg + "<br>");
 
         //Set back button on Tool bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    private void showWatsApp() {
-        Button watsApp = (Button) findViewById(R.id.shareButton);
-        watsApp.setOnClickListener(new View.OnClickListener() {
+    private void initShareBtnListener() {
+        Button shareBtn = (Button) findViewById(R.id.shareButton);
+        shareBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                 sharingIntent.setType("text/html");
+                sharingIntent.putExtra(Intent.EXTRA_SUBJECT, Html.fromHtml("<p>Muhurath</p>"));
                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, Html.fromHtml("<p>" + summaryText.toString() + "</p>"));
-                startActivity(Intent.createChooser(sharingIntent, "Share using"));
+                startActivity(Intent.createChooser(sharingIntent, getResources().getText(R.string.send_to)));
+            }
+        });
+    }
+
+    private void initWhatsAppShareBtnListener() {
+        Button shareBtn = (Button) findViewById(R.id.shareWhatAppButton);
+        shareBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+                sharingIntent.setType("text/html");
+                sharingIntent.putExtra(Intent.EXTRA_SUBJECT, Html.fromHtml("<p>Muhurath</p>"));
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, Html.fromHtml("<p>" + summaryText.toString() + "</p>"));
+                sharingIntent.setPackage("com.whatsapp");
+                startActivity(sharingIntent);
             }
         });
     }

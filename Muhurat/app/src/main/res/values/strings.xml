@@ -4,4 +4,5 @@
     <string name="calc_btn_lbl">Calculate</string>
     <string name="select_lbl">Select a date</string>
     <string name="title_activity_muhurat_summary">Muhurat</string>
+    <string name="send_to">Share using...</string>
 </resources>
