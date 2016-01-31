@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.content.Intent;
 import android.widget.Button;
 import android.content.Context;
+import android.widget.DatePicker;
 
 public class Muhurat extends AppCompatActivity {
     Button button;
@@ -35,8 +36,17 @@ public class Muhurat extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent intent = new Intent(context, MuhuratSummaryActivity.class);
+                DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker);
+                StringBuilder dateBuilder = new StringBuilder();
+                dateBuilder.append(datePicker.getDayOfMonth() + "-");
+                int month = datePicker.getMonth() + 1;
+                if (month < 10) {
+                    dateBuilder.append("0");
+                }
+                dateBuilder.append(month + "-");
+                dateBuilder.append(datePicker.getYear());
+                intent.putExtra(IntentConstants.DATE_DDMMYYYY, dateBuilder.toString());
                 startActivity(intent);
-
             }
 
         });
