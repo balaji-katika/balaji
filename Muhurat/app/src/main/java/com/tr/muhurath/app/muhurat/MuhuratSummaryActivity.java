@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
+import com.luckycatlabs.sunrisesunset.SunriseSunsetCalculator;
+import com.luckycatlabs.sunrisesunset.dto.Location;
 import com.tr.muhurath.app.muhurat.kaal.GuliKaal;
 import com.tr.muhurath.app.muhurat.kaal.Kaal;
 import com.tr.muhurath.app.muhurat.kaal.RahuKaal;
@@ -17,6 +19,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 /**
  * Activity displaying the Muhurat Summary
@@ -46,8 +49,12 @@ public class MuhuratSummaryActivity extends AppCompatActivity {
         }
 
         //Calculate Sunrise and SunSet
-        Date sunRise= SunRiseSetUtil.getSunRise(selectedDate);
-        Date sunSet=SunRiseSetUtil.getSunSet(selectedDate);
+        //Date sunRise= SunRiseSetUtil.getSunRise(selectedDate);
+        //Date sunSet=SunRiseSetUtil.getSunSet(selectedDate);
+        Location loc = new Location(AppConfiguration.latitude, AppConfiguration.longitude);
+        SunriseSunsetCalculator calculator = new SunriseSunsetCalculator(loc, TimeZone.getDefault().getID());
+        Date sunRise = SunRiseSetUtil.getSunRiseLocationBased(selectedDate, calculator);
+        Date sunSet = SunRiseSetUtil.getSunSetLocationBased(selectedDate, calculator);
 
         //Generate label with the selected date
         SimpleDateFormat displayDateFormat = new SimpleDateFormat(LBL_DATE_DISPLAY);

@@ -6,6 +6,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,6 +26,7 @@ public class Muhurat extends AppCompatActivity {
     Button button;
     private LocationManager locationManager;
     private String provider;
+    private String TAG = "Muhurat";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +53,11 @@ public class Muhurat extends AppCompatActivity {
                 AppConfiguration.setLocation(location.getLongitude(), location.getLatitude());
             }
             else {
+                Log.i(TAG, "Unable to retrieve the last known location");
                 AppConfiguration.setLocation(AppConstants.DEF_LONGITUDE, AppConstants.DEF_LATITUDE);
             }
         } catch (SecurityException securityException) {
+            Log.w(TAG, "User has not given permission for Location Service");
             AppConfiguration.setLocation(AppConstants.DEF_LONGITUDE, AppConstants.DEF_LATITUDE);
         }
     }

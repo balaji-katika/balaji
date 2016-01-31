@@ -8,4 +8,5 @@ public class AppConstants {
     //These co-ordinates belong to Bangalore
     public static final double DEF_LONGITUDE = 77.593689;
     public static final double DEF_LATITUDE = 12.978966;
+    public static final String SUNRISE_SUNSET_TIME_DELIMITER = ":";
 }
