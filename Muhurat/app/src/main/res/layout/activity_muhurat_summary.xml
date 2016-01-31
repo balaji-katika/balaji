@@ -110,4 +110,10 @@
         android:text="SunSet"
         android:textSize="@dimen/lbl_size"
         />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Shares with friends"
+        android:id="@+id/shareButton" />
 </LinearLayout>
