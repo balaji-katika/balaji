@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.tr.muhurath.app.muhurat.kaal.GuliKaal;
 import com.tr.muhurath.app.muhurat.kaal.Kaal;
 import com.tr.muhurath.app.muhurat.kaal.RahuKaal;
+import com.tr.muhurath.app.muhurat.kaal.YamaGandaKaal;
 import com.tr.muhurath.app.muhurat.utils.SunRiseSetUtil;
 
 import java.text.ParseException;
@@ -61,7 +62,7 @@ public class MuhuratSummaryActivity extends AppCompatActivity {
         kalHolder.setText("Rahu Kaalam : " + kaal.getMuhuratForDisplay(sunRise, sunSet));
 
         //Display Yama Kaal
-        kaal = new GuliKaal();
+        kaal = new YamaGandaKaal();
         kalHolder = (TextView) findViewById(R.id.txtMuhuratYama);
         kalHolder.setText("YamaGandam : " + kaal.getMuhuratForDisplay(sunRise, sunSet));
 
