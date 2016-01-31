@@ -3,7 +3,8 @@ package com.tr.muhurath.app.muhurat.kaal;
 import java.util.Date;
 
 /**
- * Created by bkatika on 1/31/16.
+ * Service Interface for Kaal
+ * Created by Balaji Katika (balaji.katika@gmail.com) on 1/31/16.
  */
 public interface Kaal {
     public static int TOTAL_SEGMENTS_IN_DAY = 8;

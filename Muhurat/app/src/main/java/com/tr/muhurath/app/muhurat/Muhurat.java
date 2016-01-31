@@ -1,5 +1,8 @@
 package com.tr.muhurath.app.muhurat;
 
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -11,8 +14,18 @@ import android.widget.Button;
 import android.content.Context;
 import android.widget.DatePicker;
 
+import com.tr.muhurath.app.muhurat.utils.AppConstants;
+
+/**
+ * Main Activity for the Application
+ *
+ * Created by Balaji Katika (balaji.katika@gmail.com) on 1/30/16.
+ */
 public class Muhurat extends AppCompatActivity {
     Button button;
+    private LocationManager locationManager;
+    private String provider;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +33,29 @@ public class Muhurat extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         addListenterOnCalcButton();
+        gatherLocationDetails();
+    }
+
+    /**
+     * Gather Location Details using Location Service
+     */
+    private void gatherLocationDetails() {
+        // Get the location manager
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        // Define the criteria how to select the locatioin provider -> use default
+        Criteria criteria = new Criteria();
+        provider = locationManager.getBestProvider(criteria, false);
+        try {
+            Location location = locationManager.getLastKnownLocation(provider);
+            if (location!=null) {
+                AppConfiguration.setLocation(location.getLongitude(), location.getLatitude());
+            }
+            else {
+                AppConfiguration.setLocation(AppConstants.DEF_LONGITUDE, AppConstants.DEF_LATITUDE);
+            }
+        } catch (SecurityException securityException) {
+            AppConfiguration.setLocation(AppConstants.DEF_LONGITUDE, AppConstants.DEF_LATITUDE);
+        }
     }
 
     /**

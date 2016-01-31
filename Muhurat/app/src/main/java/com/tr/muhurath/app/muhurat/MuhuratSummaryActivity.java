@@ -18,6 +18,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * Activity displaying the Muhurat Summary
+ * Created by Balaji Katika (balaji.katika@gmail.com) on 1/30/16.
+ */
 public class MuhuratSummaryActivity extends AppCompatActivity {
     public static final String LBL_DATE_DISPLAY = "E dd-MMM-yyyy";
 

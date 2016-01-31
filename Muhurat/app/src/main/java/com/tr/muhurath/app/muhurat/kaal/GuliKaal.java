@@ -6,7 +6,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by bkatika on 1/31/16.
+ * Service implementation for Guli Kalam
+ *
+ * Created by Balaji Katika (balaji.katika@gmail.com) on 1/31/16.
  */
 public class GuliKaal implements Kaal {
     @Override

@@ -5,7 +5,9 @@ import com.tr.muhurath.app.muhurat.utils.DateUtils;
 import java.util.Date;
 
 /**
- * Created by bkatika on 1/31/16.
+ * Service implementation for Rahu Kaalam
+ *
+ * Created by Balaji Katika (balaji.katika@gmail.com) on 1/31/16.
  */
 public class RahuKaal implements Kaal {
     @Override

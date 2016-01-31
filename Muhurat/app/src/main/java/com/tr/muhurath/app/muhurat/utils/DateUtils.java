@@ -5,7 +5,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by bkatika on 1/31/16.
+ * Utility for Date Operations
+ * * Created by Balaji Katika (balaji.katika@gmail.com) on 1/31/16.
  */
 public class DateUtils {
     private final static String DISPLAY_FORMAT = "hh-mm a";
