@@ -18,6 +18,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MuhuratSummaryActivity"
+            android:label="@string/title_activity_muhurat_summary"
+            android:parentActivityName=".Muhurat"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tr.muhurath.app.muhurat.Muhurat" />
+        </activity>
     </application>
 
 </manifest>
