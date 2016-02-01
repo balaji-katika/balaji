@@ -42,7 +42,6 @@ public class MuhuratSummaryActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         initShareBtnListener();
-        initWhatsAppShareBtnListener();
         //Parse the date passed to the activity
         Intent intent = getIntent();
         String inputDate = intent.getStringExtra(IntentConstants.DATE_DDMMYYYY);
@@ -130,21 +129,6 @@ public class MuhuratSummaryActivity extends AppCompatActivity {
                 sharingIntent.putExtra(Intent.EXTRA_SUBJECT, Html.fromHtml("<p>Muhurath</p>"));
                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, Html.fromHtml("<p>" + summaryText.toString() + "</p>"));
                 startActivity(Intent.createChooser(sharingIntent, getResources().getText(R.string.send_to)));
-            }
-        });
-    }
-
-    private void initWhatsAppShareBtnListener() {
-        Button shareBtn = (Button) findViewById(R.id.shareWhatAppButton);
-        shareBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-                sharingIntent.setType("text/html");
-                sharingIntent.putExtra(Intent.EXTRA_SUBJECT, Html.fromHtml("<p>Muhurath</p>"));
-                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, Html.fromHtml("<p>" + summaryText.toString() + "</p>"));
-                sharingIntent.setPackage("com.whatsapp");
-                startActivity(sharingIntent);
             }
         });
     }
