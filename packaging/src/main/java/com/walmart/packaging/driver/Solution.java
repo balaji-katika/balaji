@@ -2,6 +2,7 @@ package com.walmart.packaging.driver;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Stack;
 
 import com.walmart.packaging.model.Container;
 import com.walmart.packaging.model.Item;
@@ -15,6 +16,7 @@ import com.walmart.packaging.utils.TestData;
  *
  */
 public class Solution {
+	private int originalCost = 0;
 	
 	public static void main(String[] args) {
 		List<Item> items = new ArrayList<Item>();
@@ -35,6 +37,7 @@ public class Solution {
 	  System.out.println("Total cost = " + cost);
   }
 
+
 	private ContainerHolder doPackaging(List<Item> items) {
 		ContainerHolder holder = phase1(items);
 		phase2(holder);
@@ -42,9 +45,35 @@ public class Solution {
   }
 
 	private void phase2(ContainerHolder holder) {
-	  // TODO Auto-generated method stub
-	  
+		originalCost  = holder.getCost();
+
+	  for (Container container : holder.getContainers()) {
+	    repack(container, holder.getContainers());
+    }
   }
+	
+	private void repack(Container container, List<Container> containers) {
+		Stack<Container> stack = new Stack<Container>();
+		for (Container container2 : containers) {
+	    if (container == container2) {
+	    	break;
+	    }
+			if (container2.isOptimized()) {
+	    	continue;
+	    }
+			stack.push(container2);
+    }
+
+		while(stack.size() != 0) {
+			Container container2 = stack.pop();
+			if (container.getRemainingHeight() >= container2.getHeight()) {
+				container.setRemainingHeight(container.getRemainingHeight() - container2.getHeight());
+				originalCost -= container2.getHeight();
+				container2.setOptimized(true);
+			}
+		}
+		
+	}
 
 	private ContainerHolder phase1(List<Item> items) {
 		ContainerHolder containerHolder = new ContainerHolder();

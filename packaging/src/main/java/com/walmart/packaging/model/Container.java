@@ -107,5 +107,15 @@ public class Container extends Box implements Comparable<Container>{
   public void setLevels(List<Level> levels) {
   	this.levels = levels;
   }
+
+	
+  public int getRemainingHeight() {
+  	return remainingHeight;
+  }
+
+	
+  public void setRemainingHeight(int remainingHeight) {
+  	this.remainingHeight = remainingHeight;
+  }
 	
 }

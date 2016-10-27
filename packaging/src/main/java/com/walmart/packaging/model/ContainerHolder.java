@@ -26,6 +26,14 @@ public class ContainerHolder {
   	this.containers = containers;
   }
   
+  public int getCost(){
+  	int cost=0;
+	  for (Container container : containers) {
+	    cost += container.getHeight();
+    }
+	  return cost;
+  }
+  
   /**
    * Add containers to the truck
    * @param container
