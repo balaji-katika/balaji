@@ -26,4 +26,43 @@ public class BoxTest {
 		
 	}
 	
+	@Test
+	public void testMaxDimension() {
+		box = new Box(1,1,1);
+		assertTrue(1==box.getMaxDimension());
+		
+		box = new Box(1,2,1);
+		assertTrue(2==box.getMaxDimension());
+		
+		box = new Box(1,7,7);
+		assertTrue(7==box.getMaxDimension());
+	}
+	
+	@Test
+	public void testMinDimension() {
+		box = new Box(1,1,1);
+		assertTrue(1==box.getMinDimension());
+		
+		box = new Box(1,2,1);
+		assertTrue(1==box.getMinDimension());
+		
+		box = new Box(1,7,7);
+		assertTrue(1==box.getMinDimension());
+	}
+	
+	@Test
+	public void testMidDimension() {
+		box = new Box(1,1,1);
+		assertTrue(1==box.getMidDimension());
+		
+		box = new Box(1,2,1);
+		assertTrue(1==box.getMidDimension());
+		
+		box = new Box(1,7,7);
+		assertTrue(7==box.getMidDimension());
+		
+		box = new Box(1,2,7);
+		assertTrue(2==box.getMidDimension());
+	}
+	
 }

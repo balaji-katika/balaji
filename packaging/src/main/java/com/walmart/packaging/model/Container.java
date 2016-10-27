@@ -8,6 +8,7 @@ public class Container extends Box implements Comparable<Container>{
 	private int usedSpace = 0;
 	private int remainingSpace;
 	private int remainingHeight;
+	private boolean isOptimized = false;
 	private List<Level> levels = new ArrayList<Level>();
 	
 	//Assumption here is to assume Containers as cuboids of binary lengths (i.e., 1,2,4,8..etc.,)
@@ -38,6 +39,7 @@ public class Container extends Box implements Comparable<Container>{
 	  if (height < item.getMaxDimension()) {
 	  	return false;
 	  }
+	  //Container is empty and hence it can easily accomodate
 	  if (levels.size() == 0) {
 	  	return true;
 	  }
@@ -84,6 +86,16 @@ public class Container extends Box implements Comparable<Container>{
 	    level.display();
     }
 	  
+  }
+
+	
+  public boolean isOptimized() {
+  	return isOptimized;
+  }
+
+	
+  public void setOptimized(boolean isOptimized) {
+  	this.isOptimized = isOptimized;
   }
 	
 }

@@ -27,10 +27,12 @@ public class Solution {
 	}
 
 	private static void displayContainers(ContainerHolder containerHolder) {
+		int cost = 0;
 	  for (Container container : containerHolder.getContainers()) {
 	    container.display();
+	    cost += container.getHeight();
     }
-	  
+	  System.out.println("Total cost = " + cost);
   }
 
 	private ContainerHolder doPackaging(List<Item> items) {
@@ -50,6 +52,7 @@ public class Solution {
 		//Sort the items in the order of decreasing volume 
 		Collections.sort(items);
 		for (Item item : items) {
+			//Pick the smallest container from the existing containers if it can accomodate this 'item'
 	    container = containerHolder.getSmallestEmptyContainer(item);
 	    container.pushItem(item);
     }

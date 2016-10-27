@@ -43,6 +43,12 @@ public class ContainerHolder {
 	  return containers.size();
   }
 
+	/**
+	 * pick the smallest container that can accomodate given item.
+	 * If such container does not exist, then provision the smallest container that can accomodate the item
+	 * @param item - {@link Item} to be packed
+	 * @return - The container into which the item above to be packed
+	 */
 	public Container getSmallestEmptyContainer(Item item) {
 	  Container ret = null;
 	  for (Container container : containers) {
