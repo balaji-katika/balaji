@@ -8,7 +8,7 @@ Phase 1 : <br>
     <br>
 &nbsp;&nbsp;&nbsp;&nbsp;Minimum number of containers = sum of sizes of each container<br>
     
-Phase 2:<br>
+Phase 2:<br> (Applicable when we choose containers of size with powers of 2)
 &nbsp;&nbsp;&nbsp;&nbsp;Step 1: Sort the containers in the ascending order of their size<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Step 2: For each container, check if it has enough room to accomodate its previous members (if not already accomodated) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Discount the min number of containers each time the a container accomodates a smaller one into it.<br>
@@ -18,4 +18,4 @@ Phase 2:<br>
 Execute the below command to run build the jar<br>
 &nbsp;&nbsp;&nbsp;&nbsp;mvn clean install<br>
 
-Refer to <br>com.walmart.packaging.driver.Solution</b> for the driver program. Sample input file is located at <b>com.walmart.packaging.utils.TestData</b>
+Refer to <b>com.walmart.packaging.driver.Solution</b> for the driver program. Sample input file is located at <i>com.walmart.packaging.utils.TestData</i>
