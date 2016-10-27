@@ -18,7 +18,7 @@ public class Solution {
 	
 	public static void main(String[] args) {
 		List<Item> items = new ArrayList<Item>();
-		TestData.inject3(items);
+		TestData.inject2(items);
 		ContainerHolder containerHolder = null;
 		Solution solution = new Solution();
 		containerHolder = solution.doPackaging(items);

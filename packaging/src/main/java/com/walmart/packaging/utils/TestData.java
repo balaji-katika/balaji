@@ -7,12 +7,6 @@ import com.walmart.packaging.model.Item;
 
 public class TestData {
 
-	public static void inject1(List<Item> items) {
-	  items.add(new Item(1,1,1));
-	  items.add(new Item(1,1,1));
-	  items.add(new Item(1,1,1));
-	  items.add(new Item(1,1,1));
-  }
 	
 	public static void inject2(List<Item> items) {
 	  items.add(new Item(2,1,1));

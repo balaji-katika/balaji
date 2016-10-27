@@ -97,5 +97,15 @@ public class Container extends Box implements Comparable<Container>{
   public void setOptimized(boolean isOptimized) {
   	this.isOptimized = isOptimized;
   }
+
+	
+  public List<Level> getLevels() {
+  	return levels;
+  }
+
+	
+  public void setLevels(List<Level> levels) {
+  	this.levels = levels;
+  }
 	
 }
