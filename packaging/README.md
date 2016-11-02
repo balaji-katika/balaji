@@ -1,4 +1,4 @@
-The solution is implemented in two phases. Its a hybrid model based on FFDH algorithm described at http://cgi.csc.liv.ac.uk/~epa/surveyhtml.html <br>
+The solution is implemented in three phases. Its a hybrid model based on FFDH algorithm described at http://cgi.csc.liv.ac.uk/~epa/surveyhtml.html <br>
 Phase 1 : <br>
 &nbsp;&nbsp;&nbsp;&nbsp;Step 1: Sort the list of items in the descending order of volumes<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Step 2: For each item in the sorted list, pick the smallest container that can accomodate the given item.<br>
@@ -13,6 +13,10 @@ Phase 2:<br> (Applicable when we choose containers of size with powers of 2)
 &nbsp;&nbsp;&nbsp;&nbsp;Step 2: For each container, check if it has enough room to accomodate its previous members (if not already accomodated) <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Discount the min number of containers each time the a container accomodates a smaller one into it.<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Step 3: Repeat step 2 until all the containers are checked<br>
+
+Phase 3: 
+<br>
+If there are duplicate containers (of same size), then repack them together in the next immediate size
 
 
 Execute the below command to run build the jar<br>
