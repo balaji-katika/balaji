@@ -12,7 +12,8 @@ public class Level {
 	private int height;
 	private int size;
 	private int width = 0;
-	private List<Item> items = new ArrayList<Item>();
+	protected boolean isVcontainer = false;
+	protected List<Item> items = new ArrayList<Item>();
 	
 	/**
 	 * Default constructor
@@ -24,8 +25,8 @@ public class Level {
   	this.height = height;
   	this.size = size;
   }
- 
-  public int getHeight() {
+
+	public int getHeight() {
   	return height;
   }
 	

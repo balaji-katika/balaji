@@ -1,9 +1,11 @@
 package com.walmart.packaging.driver;
+import java.awt.PageAttributes.OriginType;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
+import com.walmart.packaging.exception.CannotAccomodateException;
 import com.walmart.packaging.model.Container;
 import com.walmart.packaging.model.Item;
 import com.walmart.packaging.model.ContainerHolder;
@@ -16,15 +18,15 @@ import com.walmart.packaging.utils.TestData;
  *
  */
 public class Solution {
-	private int originalCost = 0;
+	private static int originalCost = 0;
 	
 	public static void main(String[] args) {
 		List<Item> items = new ArrayList<Item>();
-		TestData.inject2(items);
+		TestData.inject5(items);
 		ContainerHolder containerHolder = null;
 		Solution solution = new Solution();
 		containerHolder = solution.doPackaging(items);
-		System.out.println("Number of boxes used = " + containerHolder.usedContainers());
+		//System.out.println("Number of boxes used = " + containerHolder.usedContainers());
 		displayContainers(containerHolder);
 	}
 
@@ -34,14 +36,62 @@ public class Solution {
 	    container.display();
 	    cost += container.getHeight();
     }
-	  System.out.println("Total cost = " + cost);
+	  System.out.println("Original cost = " + cost);
+	  System.out.println("Optimized cost = " + originalCost);
   }
 
 
 	private ContainerHolder doPackaging(List<Item> items) {
 		ContainerHolder holder = phase1(items);
 		phase2(holder);
+		phase3(holder);
 	  return holder;
+  }
+
+	private void phase3(ContainerHolder holder) {
+		Container previous = null;
+		int counter = 1;
+		for (Container container : holder.getContainers()) {
+	    if (previous == null)
+	    {
+	    	previous = container;
+	    	continue;
+	    }
+	    else if (previous.getHeight() == container.getHeight()) {
+	    	counter++;
+	    	continue;
+	    }
+	    else if(counter > 1) {
+	    	if (counter %8 == 0) {
+	    		originalCost -= (8 * (counter/8));
+	    		originalCost += previous.getHeight() * (2 * (1+counter/8));
+	    	}
+	    	else {
+	    		originalCost -= (8 * (counter/8));
+	    		if (counter%8 != 1) {
+	    			originalCost -= counter;
+	    		}
+	    		originalCost += previous.getHeight() * (2 * (1+counter/8));
+	    	}
+	    	previous = null;
+	    }
+	    counter = 1; // reset counter
+	    previous = container;
+    }
+		
+		if(counter > 1 && previous != null) {
+    	if (counter %8 == 0) {
+    		originalCost -= (8 * (counter/8));
+    		originalCost += previous.getHeight() * (2 * (1+counter/8));
+    	}
+    	else {
+    		originalCost -= (8 * (counter/8));
+    		if (counter%8 != 1) {
+    			originalCost -= counter;
+    		}
+    		originalCost += previous.getHeight() * (2 * (1+counter/8));
+    	}
+    }
   }
 
 	private void phase2(ContainerHolder holder) {
@@ -66,13 +116,15 @@ public class Solution {
 
 		while(stack.size() != 0) {
 			Container container2 = stack.pop();
-			if (container.getRemainingHeight() >= container2.getHeight()) {
-				container.setRemainingHeight(container.getRemainingHeight() - container2.getHeight());
+			if (container.canAccomodate(container2)) {
+				container.pushContainer(container2);
 				originalCost -= container2.getHeight();
 				container2.setOptimized(true);
+			} else {
+				//It cannot accomodate further smaller container. Hence break from the loop
+				break;
 			}
 		}
-		
 	}
 
 	private ContainerHolder phase1(List<Item> items) {

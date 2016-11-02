@@ -22,4 +22,17 @@ public class TestData {
 	  items.add(new Item(1,6,1));
   }
 	
+	public static void inject4(List<Item> items) {
+	  items.add(new Item(1,1,1));
+	  items.add(new Item(1,1,1));
+	  items.add(new Item(1,1,1));
+	  items.add(new Item(1,1,1));
+  }
+	
+	public static void inject5(List<Item> items) {
+		items.add(new Item(2,2,2));
+		items.add(new Item(2,2,2));
+		items.add(new Item(4,1,1));
+  }
+	
 }

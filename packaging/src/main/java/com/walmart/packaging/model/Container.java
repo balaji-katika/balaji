@@ -3,12 +3,15 @@ package com.walmart.packaging.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.walmart.packaging.exception.CannotAccomodateException;
+
 
 public class Container extends Box implements Comparable<Container>{
 	private int usedSpace = 0;
 	private int remainingSpace;
 	private int remainingHeight;
 	private boolean isOptimized = false;
+	private vContainer vContainer = null;
 	private List<Level> levels = new ArrayList<Level>();
 	
 	//Assumption here is to assume Containers as cuboids of binary lengths (i.e., 1,2,4,8..etc.,)
@@ -116,6 +119,34 @@ public class Container extends Box implements Comparable<Container>{
 	
   public void setRemainingHeight(int remainingHeight) {
   	this.remainingHeight = remainingHeight;
+  }
+
+	public void pushContainer(Container container2) {
+		if (vContainer == null) {
+			int maxSize = (height / container2.height);
+			maxSize *= maxSize;
+			vContainer = new vContainer(true, container2.getHeight(), height, maxSize);
+			levels.add(vContainer);
+			remainingHeight -= container2.getHeight();
+		}
+		try {
+			vContainer.pushContainer(container2);
+		}
+		catch (CannotAccomodateException cannotAccomodateException) {
+			vContainer = null;
+		}
+  }
+
+	/**
+	 * Check if this container can accomodate another container
+	 * @param container
+	 * @return
+	 */
+	public boolean canAccomodate(Container container) {
+	  if (remainingHeight > container.getHeight() || vContainer != null) {
+	  	return true;
+	  }
+	  return false;
   }
 	
 }
