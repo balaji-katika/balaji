@@ -12,6 +12,8 @@ import io.strati.libs.commons.lang3.StringUtils;
 
 public class csvTocsv2 {
 
+	private static String NA = "NA";
+
 	public static void main(String[] args) throws IOException {
 		String csvFileIn = "/Users/bkatika/sunama/in1.csv";
 		String line = "";
@@ -24,7 +26,6 @@ public class csvTocsv2 {
 				if (profile.length == 0) {
 					break;
 				}
-				new StringBuffer();
 				String gender = profile[1];
 				if (gender.equalsIgnoreCase("Male")) {
 					gender = "s/o";
@@ -35,19 +36,24 @@ public class csvTocsv2 {
 				String qualification = profile[5];
 				StringBuffer sb = new StringBuffer();
 				String income = null;
-				if (profile.length==11) {
+
+				String email = "Not Available";
+				if (profile.length >=11) {
 					income = profile[10];	
+				}
+				if (profile.length >=12) {
+					email = profile[11];	
 				}
 				
 				if (StringUtils.isEmpty(income)) {
-					income = "NA";
+					income = "Not Available";
 				}
 				System.out.println(profile[0] + " " + gotram + " " + gender + " Shree " + profile[9] + " from "
 				        + profile[7] + ". Completed " + qualification + " and working as " + profile[6] + " ("
 				        + profile[4] + ")");
 				sb.append("[{" + "\"na\":\"" + profile[0] + "\",");
 				sb.append("\"ge\":\"" + profile[1] + "\",");
-				sb.append("\"ag\":\"" + profile[2] + "\",");
+				sb.append("\"ag\":" + profile[2] + ",");
 				sb.append("\"go\":\"" + profile[3] + "\",");
 				sb.append("\"ph\":" + profile[4] + ",");
 				sb.append("\"ed\":\"" + profile[5] + "\",");
@@ -56,7 +62,7 @@ public class csvTocsv2 {
 				sb.append("\"pr\":\"" + profile[8] + "\",");
 				sb.append("\"fa\":\"" + profile[9] + "\",");
 				sb.append("\"in\":\"" + income + "\",");
-				sb.append("\"em\":\"NA\"");
+				sb.append("\"em,\":\"" + email + "\"");
 				sb.append("}]");
 				//System.out.println(sb.toString());
 				invokePUTtoFirebase(sb.toString(), profile[4]);
@@ -87,22 +93,22 @@ public class csvTocsv2 {
 			BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
 
 			String output;
-			//System.out.println("Output from Server .... \n");
+			// System.out.println("Output from Server .... \n");
 			while ((output = br.readLine()) != null) {
-				System.out.println(output);
+				//System.out.println(output);
 			}
 			br.close();
 
 			conn.disconnect();
 		}
 		catch (Exception e) {
-			System.err.println(e.getStackTrace());
+			System.err.println(e);
 		}
 		finally {
-			if (conn!=null) {
+			if (conn != null) {
 				conn.disconnect();
 			}
-			
+
 		}
 	}
 }
